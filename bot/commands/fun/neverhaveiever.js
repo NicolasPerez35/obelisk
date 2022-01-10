@@ -1,6 +1,4 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const fs = require("fs");
-const { guilds_list } = require("../../utils/guilds");
 module.exports = {
     name: "neverhaveiever",
     data: new SlashCommandBuilder()
