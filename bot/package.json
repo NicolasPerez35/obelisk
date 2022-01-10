@@ -1,0 +1,32 @@
+{
+  "name": "obelisk",
+  "version": "1.0.0",
+  "description": "Obelisk is a discord bot based on discord.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "startNodemon": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/NicolasPerez35/obelisk.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "Nicolas Perez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NicolasPerez35/obelisk/issues"
+  },
+  "homepage": "https://github.com/NicolasPerez35/obelisk#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.11.0",
+    "@discordjs/rest": "^0.2.0-canary.0",
+    "discord-api-types": "^0.26.1",
+    "discord.js": "^13.5.1",
+    "dotenv": "^10.0.0"
+  }
+}
