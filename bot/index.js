@@ -54,8 +54,8 @@ const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
     }
 })();
 
+console.log(`From events/ reading files...`)
 for (const file of eventFiles) {
-    console.log(`From events/ reading files...`)
     console.log(`   Loading event ${file}`);
     const event = require(`./events/${file}`);
     if (event.once) {
