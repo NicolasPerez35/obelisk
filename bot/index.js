@@ -3,6 +3,7 @@ const { Routes } = require('discord-api-types/v9');
 const { Client, Intents, Collection } = require('discord.js');
 const fs = require('fs');
 const dotenv = require('dotenv');
+const colors = require('colors');
 
 dotenv.config();
 let myIntents = new Intents();
@@ -18,16 +19,21 @@ const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'
 const commandFolders = fs.readdirSync('./commands');
 
 for (const folder of commandFolders) {
-    console.log(`From ${folder} reading files...`);
+    console.log(`From ${folder} reading files...`.yellow.bold);
     const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
     if (!commandFiles.length) {
-        console.log(`   No files found in ${folder}`);
+        console.log(`   No files found...`.red.italic);
         continue;
     }
     for (const file of commandFiles) {
-        console.log(`   Loading ${file}...`);
+        console.log(`   Loading ${file}...`.yellow.italic);
         const command = require(`./commands/${folder}/${file}`);
-        client.commands.set(command.name, command);
+        if (command.disabled) {
+            console.log(`       ${file} is disabled...`.red.italic);
+        } else {
+            client.commands.set(command.name, command);
+            console.log(`       ${file} loaded...`.green.italic); 
+        }
     }
 }
 
@@ -35,7 +41,7 @@ const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
 
 (async () => {
     try {
-        console.log('Started refreshing application (/) commands.');
+        console.log('Started refreshing application (/) commands.'.yellow);
         if (process.env.NODE_ENV === 'production') {
             await rest.put(
                 Routes.applicationGuildCommands(clientId),
@@ -48,15 +54,15 @@ const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
             )
         }
 
-        console.log('Finished refreshing application (/) commands.');
+        console.log('Finished refreshing application (/) commands.'.green);
     } catch (error) {
         console.error(error);
     }
 })();
 
-console.log(`From events/ reading files...`)
+console.log(`From events/ reading files...`.yellow)
 for (const file of eventFiles) {
-    console.log(`   Loading event ${file}`);
+    console.log(`   Loading event ${file}`.green);
     const event = require(`./events/${file}`);
     if (event.once) {
         client.once(event.name, (...args) => event.execute(...args, client));
