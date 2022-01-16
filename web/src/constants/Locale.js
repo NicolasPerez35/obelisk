@@ -5,6 +5,7 @@ export const Locale = [
     {
         id: 1,
         name: 'English',
+        default: true,
         language_code: 'en',
         locale: 'en-US',
         avatar: {
@@ -15,7 +16,6 @@ export const Locale = [
     {
         id: 2,
         name: 'Español',
-        default: true,
         language_code: 'es',
         locale: 'es-ES',
         avatar: {
