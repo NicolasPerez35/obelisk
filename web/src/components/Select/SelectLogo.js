@@ -9,7 +9,6 @@ function classNames(...classes) {
 
 export default function Select(props) {
     const { list, title } = props
-    console.log(list, title);
     const [selected, setSelected] = useState(list.find(item => item.default));
     const [displayTitle, setDisplayTitle] = useState(title);
 
@@ -20,7 +19,7 @@ export default function Select(props) {
                 <>
                     <Listbox.Label className="block text-sm font-medium text-gray-700">{displayTitle}</Listbox.Label>
                     <div className="mt-1 relative">
-                        <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <span className="flex items-center">
                                 {(selected.avatar.svg)}
                                 <span className="ml-3 block truncate">{selected.name}</span>
@@ -44,7 +43,7 @@ export default function Select(props) {
                                         className={({ active }) =>
                                             classNames(
                                                 active ? 'text-white bg-indigo-600' : 'text-gray-900',
-                                                'cursor-default select-none relative py-2 pl-3 pr-9'
+                                                'cursor-pointer select-none relative py-2 pl-3 pr-9'
                                             )
                                         }
                                         value={item}
