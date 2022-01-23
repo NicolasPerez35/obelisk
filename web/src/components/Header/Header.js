@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Popover, Transition } from '@headlessui/react'
 import {
     BookmarkAltIcon,
@@ -15,6 +15,7 @@ import {
 } from '@heroicons/react/outline'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import Update from "../Banners/Update";
+import { INDEX, PRICING } from "../../constants/Paths";
 
 const solutions = [
     {
@@ -79,13 +80,15 @@ function classNames(...classes) {
 
 export default function Header() {
 
+    const [showUpdate, setShowUpdate] = useState(true)
+
     return (
         <>
             <Popover className="relative bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="flex justify-between items-center border-b-2 border-gray-100 py-3 md:justify-start md:space-x-10">
                         <div className="flex justify-start lg:w-auto">
-                            <a href="#">
+                            <a href={INDEX}>
                                 <span className="sr-only">Workflow</span>
                                 <img
                                     className="h-8 w-auto sm:h-10"
@@ -166,7 +169,7 @@ export default function Header() {
                                 )}
                             </Popover>
 
-                            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            <a href={PRICING} className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Pricing
                             </a>
                             <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
@@ -331,7 +334,10 @@ export default function Header() {
                 </Transition>
             </Popover>
 
-            <Update />
+            {
+                showUpdate && 
+                <Update changeVisibility={setShowUpdate} visibilityStatus={showUpdate} /> 
+            }
         </>
     )
 }
