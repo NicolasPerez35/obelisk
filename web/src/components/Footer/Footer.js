@@ -4,7 +4,7 @@ import Select from "../Select/SelectLogo";
 
 export default function Footer() {
     return (
-        <footer className="border-slate-600 border-t-2" >
+        <footer className="border-slate-500 border-t-2 border-opacity-25" >
             <section className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between">
                 <section className="py-4 mr-10">
 
